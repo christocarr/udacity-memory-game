@@ -3,6 +3,9 @@
 const allCards = document.getElementsByClassName('card');
 let cards = [...allCards];
 
+//get container that contains the cards
+const board = document.querySelector('.container');
+
 //add event listener for each card in cards array
 cards.forEach(function(card) {
 	card.addEventListener('click', function (){
@@ -27,3 +30,15 @@ function shuffle(arr) {
 	return arr;
 }
 
+//shuffle pack when page loads
+window.addEventListener('load', function() {
+	
+	const PACK = shuffle(cards);
+	
+	for (let i = 0; i < PACK.length; i++) {
+		[].forEach.call(PACK, function(item) {
+			board.appendChild(item);
+		});
+	}
+	
+});
