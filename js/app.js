@@ -4,7 +4,7 @@ const allCards = document.getElementsByClassName('card');
 let cards = [...allCards];
 
 //get container that contains the cards
-const board = document.querySelector('.container');
+const board = document.querySelector('.board');
 
 //add event listener for each card in cards array
 cards.forEach(function(card) {
