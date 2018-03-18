@@ -3,29 +3,23 @@
 const allCards = document.getElementsByClassName('card');
 const cards = [...allCards];
 
-//get card images class names and insert into array
-const cardImg = document.getElementsByTagName('img');
-const allCardImg = [...cardImg];
+//get card img elements
+const CardImg = document.getElementsByTagName('img');
+const allCardImg = [...CardImg];
+
 
 //get container that contains the cards
 const board = document.querySelector('.board');
 
-//let flipCard = function() {
-//	let cardsFlipped = 0;
-//	while (cardsFlipped === 2) {
-//		this.classList.toggle('flipped');
-//		cardsFlipped ++;
-//	} 
-//	
-//	this.classList.toggle('flipped');
-//}
+let flipCard = function() {
+	let cardsFlipped = 0;
+	this.classList.toggle('flipped');
+}
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
 	card.setAttribute('id', index);
-	card.addEventListener('click', function() {
-		
-	})
+	card.addEventListener('click', flipCard)
 	
 });
 
@@ -55,5 +49,6 @@ window.addEventListener('load', function() {
 			board.appendChild(item);
 		});
 	}
+	
 	
 });
