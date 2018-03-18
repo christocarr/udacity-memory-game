@@ -1,17 +1,32 @@
 
 //get cards with class name card and make array called cards
 const allCards = document.getElementsByClassName('card');
-let cards = [...allCards];
+const cards = [...allCards];
+
+//get card images class names and insert into array
+const cardImg = document.getElementsByTagName('img');
+const allCardImg = [...cardImg];
 
 //get container that contains the cards
 const board = document.querySelector('.board');
 
+//let flipCard = function() {
+//	let cardsFlipped = 0;
+//	while (cardsFlipped === 2) {
+//		this.classList.toggle('flipped');
+//		cardsFlipped ++;
+//	} 
+//	
+//	this.classList.toggle('flipped');
+//}
+
 //add event listener for each card in cards array
-cards.forEach(function(card) {
-	card.addEventListener('click', function (){
-		console.log('card clicked');
+cards.forEach(function(card, index) {
+	card.setAttribute('id', index);
+	card.addEventListener('click', function() {
 		
 	})
+	
 });
 
 //function to shuffle cards at on load and 
