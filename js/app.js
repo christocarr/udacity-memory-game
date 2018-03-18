@@ -4,24 +4,34 @@ const allCards = document.getElementsByClassName('card');
 const cards = [...allCards];
 
 //get card img elements
-const CardImg = document.getElementsByTagName('img');
-const allCardImg = [...CardImg];
+//const CardImg = document.getElementsByTagName('img');
+//const allCardImg = [...CardImg];
 
 
 //get container that contains the cards
 const board = document.querySelector('.board');
 
-let flipCard = function() {
-	let cardsFlipped = 0;
-	this.classList.toggle('flipped');
+
+
+let cardClick = function(e){
+	let cardId = e.target.nextElementSibling;
+	cardId = cardId.firstChild.className;
+	console.log(cardId);
+	this.classList.add('flipped');
+	
 }
+
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
 	card.setAttribute('id', index);
-	card.addEventListener('click', flipCard)
+	card.addEventListener('click', cardClick)
 	
 });
+
+
+
+
 
 //function to shuffle cards at on load and 
 function shuffle(arr) {
