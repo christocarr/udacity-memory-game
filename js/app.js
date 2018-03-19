@@ -9,26 +9,24 @@ const cardSymbols =[]
 //get container that contains the cards
 const board = document.querySelector('.board');
 
-//get card symbols and insert into array cardSymbols
-for (let i = 0; i < cards.length; ++i) {
-	let symbol = cards[i];
-	symbol = symbol.firstElementChild.nextElementSibling.firstChild.className;
-	cardSymbols.push(symbol);
-}
 
 
 let cardClick = function(e){
-	let cardId = e.target.nextElementSibling;
-	
+ 	//get card symbols and insert into array cardSymbols
 	this.classList.add('flipped');
-	
-	if (cardSymbols[0] === cardSymbols[1]) {
-		this.classList.add('flipped');
-	} else {
-		this.classList.remove('flipped');
-	}
-	
+	let symbol = e.target.nextElementSibling.firstChild.className;
+	cardSymbols.push(symbol);
+	console.log(cardSymbols);
+
 }
+	
+	
+	//	if (cardSymbols[0] === cardSymbols[1]) {
+//		this.classList.add('flipped');
+//	} else {
+//		this.classList.remove('flipped');
+//	}
+	
 
 
 //add event listener for each card in cards array
