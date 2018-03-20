@@ -54,6 +54,6 @@
 	transform: rotateY(180deg);
 }
 
-.stay-flipped {
+.disabled {
 	pointer-events: none;
 }

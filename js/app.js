@@ -2,36 +2,47 @@
 //get cards with class name card and make array called cards
 const allCards = document.getElementsByClassName('card');
 const cards = [...allCards];
-const cardMatch = [];
+
 // array that holds all card symbols by class name
 let cardSymbols = [];
-let flippedCounter = [];
+let flippedCards = [];
+
 //get container that contains the cards
 const board = document.querySelector('.board');
 //get counter element
 const counter = document.querySelector('.counter');
+let moves = 0;
 
 
 let cardClick = function(e){
 	
- 	this.classList.toggle('flipped');
-	this.classList.add('stay-flipped');
+	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
 	
-	let symbol = e.target.nextElementSibling.firstChild.className;
-//	cardSymbols.push(symbol); //get card symbols and insert into array cardSymbols
-	flippedCards(symbol);
+	this.classList.toggle('flipped');
+	this.classList.toggle('disabled');
+	
+	let flippedCard = e.target.parentElement.classList; //get classes of flipped card
+	console.log(flippedCard);
+	
+//	cardSymbols.push(symbol); 
+	
+	let flippedCount = 1;
+	
+	cardMatch(flippedCount, symbol, flippedCard); 
 	
 }
 	
-function flippedCards(symbol) {
-	flippedCounter.push(symbol);
-	console.log(flippedCounter);
-	if (flippedCounter.length === 2) {
-		//TODO increace counter by one.
-		if (flippedCounter[0] === flippedCounter[1]) {
+function cardMatch(flippedCount, symbol, flippedCard) {
+	
+	flippedCards.push(flippedCount);
+	cardSymbols.push(symbol); //get symbols, insert into cardSymbols to compare flipped cards
+	console.log(flippedCards);
+	if (flippedCards.length === 2) {
+		moveCounter()
+		if (cardSymbols[0] === cardSymbols[1]) {
 			pairMatch();
 		} else {
-			pairUnMatch();
+			pairMismatch(flippedCard);
 		}
 	}
 }
@@ -40,8 +51,13 @@ function pairMatch() {
 	console.log('cards match');
 }	
 
-function pairUnMatch() {
-	console.log('cards do not match');
+function pairMismatch(flippedCard) {
+	console.log(flippedCard);
+}
+
+function moveCounter() {
+	moves++;
+	counter.innerHTML = 'Moves: ' + moves;
 }
 
 //add event listener for each card in cards array
