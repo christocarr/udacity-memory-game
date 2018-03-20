@@ -53,3 +53,7 @@
 .flipped {
 	transform: rotateY(180deg);
 }
+
+.stay-flipped {
+	pointer-events: none;
+}

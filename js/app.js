@@ -4,30 +4,45 @@ const allCards = document.getElementsByClassName('card');
 const cards = [...allCards];
 const cardMatch = [];
 // array that holds all card symbols by class name
-const cardSymbols =[]
-
+let cardSymbols = [];
+let flippedCounter = [];
 //get container that contains the cards
 const board = document.querySelector('.board');
-
+//get counter element
+const counter = document.querySelector('.counter');
 
 
 let cardClick = function(e){
- 	//get card symbols and insert into array cardSymbols
-	this.classList.add('flipped');
+	
+ 	this.classList.toggle('flipped');
+	this.classList.add('stay-flipped');
+	
 	let symbol = e.target.nextElementSibling.firstChild.className;
-	cardSymbols.push(symbol);
-	console.log(cardSymbols);
-
+//	cardSymbols.push(symbol); //get card symbols and insert into array cardSymbols
+	flippedCards(symbol);
+	
 }
 	
+function flippedCards(symbol) {
+	flippedCounter.push(symbol);
+	console.log(flippedCounter);
+	if (flippedCounter.length === 2) {
+		//TODO increace counter by one.
+		if (flippedCounter[0] === flippedCounter[1]) {
+			pairMatch();
+		} else {
+			pairUnMatch();
+		}
+	}
+}
 	
-	//	if (cardSymbols[0] === cardSymbols[1]) {
-//		this.classList.add('flipped');
-//	} else {
-//		this.classList.remove('flipped');
-//	}
-	
+function pairMatch() {
+	console.log('cards match');
+}	
 
+function pairUnMatch() {
+	console.log('cards do not match');
+}
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
