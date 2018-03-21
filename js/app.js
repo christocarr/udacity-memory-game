@@ -9,10 +9,14 @@ let flippedCards = [];
 
 //get container that contains the cards
 const board = document.querySelector('.board');
+
 //get counter element
 const counter = document.querySelector('.counter');
+//initialize move counter by 1 at start of game
 let moves = 0;
 
+//array to hold selected cards
+let clickedCards =[];
 
 let cardClick = function(e){
 	
@@ -24,15 +28,16 @@ let cardClick = function(e){
 	let flippedCard = e.target.parentElement.classList; //get classes of flipped card
 	console.log(flippedCard);
 	
-//	cardSymbols.push(symbol); 
-	
 	let flippedCount = 1;
 	
-	cardMatch(flippedCount, symbol, flippedCard); 
+	//insert selected cards into array to change class if matched or mismatched
+	clickedCards.push(this);
+
+	compareCards(flippedCount, symbol, flippedCard); 
 	
 }
 	
-function cardMatch(flippedCount, symbol, flippedCard) {
+function compareCards(flippedCount, symbol, flippedCard) {
 	
 	flippedCards.push(flippedCount);
 	cardSymbols.push(symbol); //get symbols, insert into cardSymbols to compare flipped cards
@@ -41,28 +46,43 @@ function cardMatch(flippedCount, symbol, flippedCard) {
 		moveCounter()
 		if (cardSymbols[0] === cardSymbols[1]) {
 			pairMatch();
+			
 		} else {
-			pairMismatch(flippedCard);
+			pairMismatch();
+			
 		}
 	}
 }
 	
 function pairMatch() {
 	console.log('cards match');
+	
 }	
 
-function pairMismatch(flippedCard) {
-	console.log(flippedCard);
+function pairMismatch() {
+	setTimeout(function() {
+		
+		console.log('cards do not match');
+		clickedCards[0].classList.toggle('flipped');
+		clickedCards[1].classList.toggle('flipped');
+		clickedCards[0].classList.toggle('disabled');
+		clickedCards[1].classList.toggle('disabled');
+		
+	}, 1100);
+
 }
 
+//increase the moves counter by 1 after every two cards flipped over
 function moveCounter() {
 	moves++;
 	counter.innerHTML = 'Moves: ' + moves;
 }
 
+
+
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
-	card.setAttribute('id', index);
+//	card.setAttribute('id', index);
 	card.addEventListener('click', cardClick)
 	
 });
