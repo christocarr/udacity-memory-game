@@ -8,12 +8,13 @@
 .board {
 	width: 400px;
 	height: 460px;
-	background: lightgrey;
+	background: whitesmoke;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	padding: 1em 0 0 0;
+	padding: 1em 1em 0 1em;
 	margin: 1em auto 0 auto;
+	border: 1px solid silver;
 }
 
 /* card styles*/
@@ -55,5 +56,9 @@
 }
 
 .disabled {
+	pointer-events: none;
+}
+
+.matched-cards {
 	pointer-events: none;
 }
