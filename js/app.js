@@ -13,6 +13,9 @@ const counter = document.querySelector('.counter');
 //initialize move counter by 0 at start of game
 let moves = 0;
 
+//get reset button element
+
+
 let cardClick = function(e){
 	
 	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
@@ -53,8 +56,6 @@ function pairMatch() {
 
 function pairMismatch() {
 	setTimeout(function() {
-		
-		console.log('cards do not match');
 		flippedCards[0].classList.toggle('flipped');
 		flippedCards[1].classList.toggle('flipped');
 		flippedCards[0].classList.toggle('disabled');
@@ -63,7 +64,6 @@ function pairMismatch() {
 		cardSymbols =[];
 	}, 1100);
 	
-	reset();
 }
 
 //increase the moves counter by 1 after every two cards flipped over
@@ -72,9 +72,6 @@ function moveCounter() {
 	counter.innerHTML = 'Moves: ' + moves;
 }
 
-function reset() {
-	
-}
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
@@ -112,5 +109,12 @@ window.addEventListener('load', function() {
 	}
 	
 	counter.innerHTML = 'Moves: 0';
+	
+	//get reset button and attach window reload when clicked
+	reset = document.querySelector('.reset');
+	reset.addEventListener('click', function() {
+		window.location.reload(true);
+		
+		});
 	
 });
