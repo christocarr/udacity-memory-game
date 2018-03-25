@@ -25,15 +25,14 @@ let cardClick = function(e){
 	this.classList.toggle('flipped');
 	this.classList.toggle('disabled');
 	
-	let flippedCard = e.target.parentElement.classList; //get classes of flipped card
-	console.log(flippedCard);
+//	let flippedCard = e.target.parentElement.classList; //get classes of flipped card
 	
 	let flippedCount = 1;
-	
+
 	//insert selected cards into array to change class if matched or mismatched
 	clickedCards.push(this);
-
-	compareCards(flippedCount, symbol, flippedCard); 
+	
+	compareCards(flippedCount, symbol); 
 	
 }
 	
@@ -41,7 +40,6 @@ function compareCards(flippedCount, symbol, flippedCard) {
 	
 	flippedCards.push(flippedCount);
 	cardSymbols.push(symbol); //get symbols, insert into cardSymbols to compare flipped cards
-	console.log(flippedCards);
 	if (flippedCards.length === 2) {
 		moveCounter()
 		if (cardSymbols[0] === cardSymbols[1]) {
@@ -56,7 +54,7 @@ function compareCards(flippedCount, symbol, flippedCard) {
 	
 function pairMatch() {
 	console.log('cards match');
-	
+	flippedCards = [];
 }	
 
 function pairMismatch() {
@@ -67,9 +65,11 @@ function pairMismatch() {
 		clickedCards[1].classList.toggle('flipped');
 		clickedCards[0].classList.toggle('disabled');
 		clickedCards[1].classList.toggle('disabled');
+		flippedCards = [];
 		
 	}, 1100);
-
+	
+	reset();
 }
 
 //increase the moves counter by 1 after every two cards flipped over
@@ -78,7 +78,9 @@ function moveCounter() {
 	counter.innerHTML = 'Moves: ' + moves;
 }
 
-
+function reset() {
+	
+}
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {

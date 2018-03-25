@@ -5,6 +5,33 @@
 	margin: 0;
 }
 
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	width: 40%;
+	margin: 1em auto;
+} 
+
+.stat-container {
+	display: flex;
+	width: 40%;
+	margin: 1em auto;
+}
+
+.star-rating {
+	width: 50%;
+}
+
+.counter {
+	width: 40%;
+}
+
+.reset {
+	width: 10%;
+}
+
 .board {
 	width: 400px;
 	height: 460px;
