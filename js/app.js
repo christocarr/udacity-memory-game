@@ -2,21 +2,16 @@
 //get cards with class name card and make array called cards
 const allCards = document.getElementsByClassName('card');
 const cards = [...allCards];
-
 // array that holds all card symbols by class name
 let cardSymbols = [];
 let flippedCards = [];
-
 //get container that contains the cards
 const board = document.querySelector('.board');
 
 //get counter element
 const counter = document.querySelector('.counter');
-//initialize move counter by 1 at start of game
+//initialize move counter by 0 at start of game
 let moves = 0;
-
-//array to hold selected cards
-let clickedCards =[];
 
 let cardClick = function(e){
 	
@@ -25,26 +20,22 @@ let cardClick = function(e){
 	this.classList.toggle('flipped');
 	this.classList.toggle('disabled');
 	
-//	let flippedCard = e.target.parentElement.classList; //get classes of flipped card
-	
-	let flippedCount = 1;
+	cardSymbols.push(symbol);
 
-	//insert selected cards into array to change class if matched or mismatched
-	clickedCards.push(this);
-	
-	compareCards(flippedCount, symbol); 
+	//insert selected cards into array to allow change class if matched or mismatched
+	flippedCards.push(this);
+
+	compareCards(); 
 	
 }
 	
-function compareCards(flippedCount, symbol, flippedCard) {
-	
-	flippedCards.push(flippedCount);
-	cardSymbols.push(symbol); //get symbols, insert into cardSymbols to compare flipped cards
+function compareCards() {
+
 	if (flippedCards.length === 2) {
 		moveCounter()
 		if (cardSymbols[0] === cardSymbols[1]) {
 			pairMatch();
-			
+			console.log(cardSymbols);
 		} else {
 			pairMismatch();
 			
@@ -54,19 +45,22 @@ function compareCards(flippedCount, symbol, flippedCard) {
 	
 function pairMatch() {
 	console.log('cards match');
+	flippedCards[0].classList.toggle('disabled');
+	flippedCards[1].classList.toggle('disabled');
 	flippedCards = [];
+	cardSymbols =[];
 }	
 
 function pairMismatch() {
 	setTimeout(function() {
 		
 		console.log('cards do not match');
-		clickedCards[0].classList.toggle('flipped');
-		clickedCards[1].classList.toggle('flipped');
-		clickedCards[0].classList.toggle('disabled');
-		clickedCards[1].classList.toggle('disabled');
+		flippedCards[0].classList.toggle('flipped');
+		flippedCards[1].classList.toggle('flipped');
+		flippedCards[0].classList.toggle('disabled');
+		flippedCards[1].classList.toggle('disabled');
 		flippedCards = [];
-		
+		cardSymbols =[];
 	}, 1100);
 	
 	reset();
@@ -117,5 +111,6 @@ window.addEventListener('load', function() {
 		});
 	}
 	
+	counter.innerHTML = 'Moves: 0';
 	
 });
