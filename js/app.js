@@ -13,8 +13,10 @@ const counter = document.querySelector('.counter');
 //initialize move counter by 0 at start of game
 let moves = 0;
 
-//get reset button element
-
+//get all star elements and insert into array called stars
+const allStars = document.getElementsByClassName('star');
+const stars = [...allStars];
+console.log(stars);
 
 let cardClick = function(e){
 	
@@ -36,18 +38,18 @@ function compareCards() {
 
 	if (flippedCards.length === 2) {
 		moveCounter()
+		
 		if (cardSymbols[0] === cardSymbols[1]) {
 			pairMatch();
-			console.log(cardSymbols);
 		} else {
 			pairMismatch();
-			
 		}
+		
 	}
 }
+
 	
 function pairMatch() {
-	console.log('cards match');
 	flippedCards[0].classList.toggle('disabled');
 	flippedCards[1].classList.toggle('disabled');
 	flippedCards = [];
@@ -70,7 +72,16 @@ function pairMismatch() {
 function moveCounter() {
 	moves++;
 	counter.innerHTML = 'Moves: ' + moves;
+	
+	if (moves > 8 && moves < 14) {
+		stars[2].style.visibility = "collapse" ;
+	} else if (moves > 14) {
+		stars[2].style.visibility = "collapse";
+		stars[1].style.visibility = "collapse";
+	}
+
 }
+
 
 
 //add event listener for each card in cards array
@@ -112,9 +123,10 @@ window.addEventListener('load', function() {
 	
 	//get reset button and attach window reload when clicked
 	reset = document.querySelector('.reset');
-	reset.addEventListener('click', function() {
+	reset.addEventListener('mousedown', function() {
 		window.location.reload(true);
-		
-		});
+		reset.style.boxShadow = "inset 0px 0px 11px 0.2px rgba(0,0,0,0.6)"
+	});
+	
 	
 });
