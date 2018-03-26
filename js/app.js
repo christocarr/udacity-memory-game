@@ -8,15 +8,20 @@ let flippedCards = [];
 //get container that contains the cards
 const board = document.querySelector('.board');
 
+//flipped card counter
+let flippedCardCount = 0;
+
 //get counter element
 const counter = document.querySelector('.counter');
 //initialize move counter by 0 at start of game
 let moves = 0;
-
-//get all star elements and insert into array called stars
+//get star images and insert into array called stars
 const allStars = document.getElementsByClassName('star');
 const stars = [...allStars];
-console.log(stars);
+//get modal elements
+const modal = document.getElementById('modal');
+const modalOverlay = document.getElementById('modalOverlay');
+
 
 let cardClick = function(e){
 	
@@ -54,6 +59,10 @@ function pairMatch() {
 	flippedCards[1].classList.toggle('disabled');
 	flippedCards = [];
 	cardSymbols =[];
+	flippedCardCount = flippedCardCount + 2;
+	if (flippedCardCount === 2) {
+		congratulationsModal();
+	}
 }	
 
 function pairMismatch() {
@@ -64,7 +73,7 @@ function pairMismatch() {
 		flippedCards[1].classList.toggle('disabled');
 		flippedCards = [];
 		cardSymbols =[];
-	}, 1100);
+	}, 900);
 	
 }
 
@@ -73,16 +82,14 @@ function moveCounter() {
 	moves++;
 	counter.innerHTML = 'Moves: ' + moves;
 	
-	if (moves > 8 && moves < 14) {
+	if (moves > 10 && moves <= 16) {
 		stars[2].style.visibility = "collapse" ;
-	} else if (moves > 14) {
+	} else if (moves > 16) {
 		stars[2].style.visibility = "collapse";
 		stars[1].style.visibility = "collapse";
 	}
 
 }
-
-
 
 //add event listener for each card in cards array
 cards.forEach(function(card, index) {
@@ -90,7 +97,6 @@ cards.forEach(function(card, index) {
 	card.addEventListener('click', cardClick)
 	
 });
-
 
 //function to shuffle cards at on load and 
 function shuffle(arr) {
@@ -106,6 +112,21 @@ function shuffle(arr) {
 	}
 	
 	return arr;
+}
+
+function congratulationsModal() {
+	setTimeout(function() {
+		console.log(modal);
+		console.log(modalOverlay)
+		modal.style.display = "block";
+		modalOverlay.style.background = "black";
+		modalOverlay.style.display = "block";
+	}, 1000)
+	const modalClose = document.getElementById('modalClose');
+	modalClose.addEventListener('click', function() {
+		modal.style.display = "none";
+		modalOverlay.style.display = "none";
+	});
 }
 
 //shuffle pack when page loads
