@@ -13,14 +13,28 @@ let flippedCardCount = 0;
 
 //get counter element
 const counter = document.querySelector('.counter');
+
 //initialize move counter by 0 at start of game
 let moves = 0;
-//get star images and insert into array called stars
-const allStars = document.getElementsByClassName('star');
-const stars = [...allStars];
+
+//create star elements and insert into stars array
+let stars = [];
+
+
+for (let i = 1; i <=3; i++) {
+	let star = document.createElement("IMG");
+	star.src = "./images/Gold_Star.svg";
+	star.setAttribute('class', 'star');
+	star.setAttribute('width', '25px');
+	stars.push(star);
+}
+
 //get modal elements
 const modal = document.getElementById('modal');
 const modalOverlay = document.getElementById('modalOverlay');
+
+//set timer variables
+let startTime, endTime, totalTime;
 
 
 let cardClick = function(e){
@@ -37,6 +51,9 @@ let cardClick = function(e){
 
 	compareCards(); 
 	
+	if (moves === 0) {
+		startTime = new Date();
+	}
 }
 	
 function compareCards() {
@@ -45,7 +62,7 @@ function compareCards() {
 		moveCounter()
 		
 		if (cardSymbols[0] === cardSymbols[1]) {
-			pairMatch();
+			pairMatch(); 
 		} else {
 			pairMismatch();
 		}
@@ -62,6 +79,10 @@ function pairMatch() {
 	flippedCardCount = flippedCardCount + 2;
 	if (flippedCardCount === 2) {
 		congratulationsModal();
+		endTime = new Date();
+		totalTime = endTime - startTime;
+		totalTime /= 1000;
+		totalTime = Math.round(totalTime);
 	}
 }	
 
@@ -83,10 +104,9 @@ function moveCounter() {
 	counter.innerHTML = 'Moves: ' + moves;
 	
 	if (moves > 10 && moves <= 16) {
-		stars[2].style.visibility = "collapse" ;
+		stars.pop();
 	} else if (moves > 16) {
-		stars[2].style.visibility = "collapse";
-		stars[1].style.visibility = "collapse";
+		
 	}
 
 }
@@ -98,7 +118,7 @@ cards.forEach(function(card, index) {
 	
 });
 
-//function to shuffle cards at on load and 
+//function to shuffle cards at on load and reset
 function shuffle(arr) {
 	let randomCard;
 	let tempCard; //for swopping
@@ -116,11 +136,15 @@ function shuffle(arr) {
 
 function congratulationsModal() {
 	setTimeout(function() {
-		console.log(modal);
-		console.log(modalOverlay)
 		modal.style.display = "block";
 		modalOverlay.style.background = "black";
 		modalOverlay.style.display = "block";
+		//display time taken to finish a game
+		const timeDisplay = document.querySelector('.timer');
+		timeDisplay.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
+		//display the star rating
+		const starDisplay = document.querySelector('.rating');
+		starDisplay.innerHTML = `Your star rating: ${stars}`
 	}, 1000)
 	const modalClose = document.getElementById('modalClose');
 	modalClose.addEventListener('click', function() {
@@ -140,6 +164,10 @@ window.addEventListener('load', function() {
 		});
 	}
 	
+	//insert stars 
+	console.log(stars);
+	const starRating = document.querySelector('.star-rating');
+	starRating.innerHTML = stars;
 	counter.innerHTML = 'Moves: 0';
 	
 	//get reset button and attach window reload when clicked

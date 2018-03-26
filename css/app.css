@@ -140,3 +140,8 @@ h1 {
 	cursor: pointer;
 }
 
+.modal-heading, 
+.modal p {
+	text-align: center;
+	margin: 2em;
+}
