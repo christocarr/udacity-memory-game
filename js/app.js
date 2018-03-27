@@ -17,17 +17,9 @@ const counter = document.querySelector('.counter');
 //initialize move counter by 0 at start of game
 let moves = 0;
 
-//create star elements and insert into stars array
-let stars = [];
-
-
-for (let i = 1; i <=3; i++) {
-	let star = document.createElement("IMG");
-	star.src = "./images/Gold_Star.svg";
-	star.setAttribute('class', 'star');
-	star.setAttribute('width', '25px');
-	stars.push(star);
-}
+//get star elements and insert into stars array
+const allStars = document.getElementsByClassName('star');
+const stars = [...allStars];
 
 //get modal elements
 const modal = document.getElementById('modal');
@@ -142,10 +134,15 @@ function congratulationsModal() {
 		//display time taken to finish a game
 		const timeDisplay = document.querySelector('.timer');
 		timeDisplay.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
+		
 		//display the star rating
 		const starDisplay = document.querySelector('.rating');
-		starDisplay.innerHTML = `Your star rating: ${stars}`
+		stars.forEach(function(el) {
+			starDisplay.appendChild(el);
+		})
+		
 	}, 1000)
+	
 	const modalClose = document.getElementById('modalClose');
 	modalClose.addEventListener('click', function() {
 		modal.style.display = "none";
@@ -164,10 +161,6 @@ window.addEventListener('load', function() {
 		});
 	}
 	
-	//insert stars 
-	console.log(stars);
-	const starRating = document.querySelector('.star-rating');
-	starRating.innerHTML = stars;
 	counter.innerHTML = 'Moves: 0';
 	
 	//get reset button and attach window reload when clicked
