@@ -8,4 +8,8 @@ Clone or download to your local machine then run the index.html file in your fav
 
 ### Issues
 
-Project not completed.
+No issues found.
+
+### Dependencies
+
+No dependencies used for the creation of this app.
