@@ -1,6 +1,6 @@
 # Udacity Memory Game
 
-The second project from Udacity's front end nanodegree scholarship
+The second project from Udacity's frontend nanodegree scholarship.
 
 ## Getting Started
 
