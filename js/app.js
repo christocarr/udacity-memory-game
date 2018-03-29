@@ -1,29 +1,29 @@
 
 //get cards with class name card and make array called cards
-const allCards = document.getElementsByClassName('card');
-const cards = [...allCards];
+const ALL_CARDS = document.getElementsByClassName('card');
+const CARDS = [...ALL_CARDS];
 // array that holds all card symbols by class name
 let cardSymbols = [];
 let flippedCards = [];
 //get container that contains the cards
-const board = document.querySelector('.board');
+const BOARD = document.querySelector('.board');
 
 //flipped card counter
 let flippedCardCount = 0;
 
 //get counter element
-const counter = document.querySelector('.counter');
+const COUNTER = document.querySelector('.counter');
 
 //initialize move counter by 0 at start of game
 let moves = 0;
 
 //get star elements and insert into stars array
-const allStars = document.getElementsByClassName('star');
-const stars = [...allStars];
+const ALL_STARS = document.getElementsByClassName('star');
+const STARS = [...ALL_STARS];
 
 //get modal elements
-const modal = document.getElementById('modal');
-const modalOverlay = document.getElementById('modalOverlay');
+const MODAL = document.getElementById('modal');
+const MODAL_OVERLAY = document.getElementById('modalOverlay');
 
 //set timer variables
 let startTime, endTime, totalTime;
@@ -41,7 +41,7 @@ let cardClick = function(e){
 	//insert selected cards into array to allow change class if matched or mismatched
 	flippedCards.push(this);
 
-	compareCards(); 
+	compareCards();
 	
 	if (moves === 0) {
 		startTime = new Date();
@@ -54,7 +54,7 @@ function compareCards() {
 		moveCounter()
 		
 		if (cardSymbols[0] === cardSymbols[1]) {
-			pairMatch(); 
+			pairMatch();
 		} else {
 			pairMismatch();
 		}
@@ -76,7 +76,7 @@ function pairMatch() {
 		totalTime /= 1000;
 		totalTime = Math.round(totalTime);
 	}
-}	
+}
 
 function pairMismatch() {
 	setTimeout(function() {
@@ -93,19 +93,19 @@ function pairMismatch() {
 //increase the moves counter by 1 after every two cards flipped over
 function moveCounter() {
 	moves++;
-	counter.innerHTML = 'Moves: ' + moves;
+	COUNTER.innerHTML = 'Moves: ' + moves;
 	
 	if (moves > 10 && moves <= 16) {
-		stars[2].style.visibility = "collapse";
+		STARS[2].style.visibility = "collapse";
 	} else if (moves > 16) {
-		stars[1].style.visibility = "collapse";
-		console.log(stars);
+		STARS[1].style.visibility = "collapse";
 	}
 
 }
 
 //add event listener for each card in cards array
-cards.forEach(function(card, index) {
+CARDS.forEach(function(card, index) {
+	
 //	card.setAttribute('id', index);
 	card.addEventListener('click', cardClick)
 	
@@ -129,41 +129,41 @@ function shuffle(arr) {
 
 function congratulationsModal() {
 	setTimeout(function() {
-		modal.style.display = "block";
-		modalOverlay.style.background = "black";
-		modalOverlay.style.display = "block";
+		MODAL.style.display = "block";
+		MODAL_OVERLAY.style.background = "black";
+		MODAL_OVERLAY.style.display = "block";
 		
 		//display time taken to finish a game
-		const timeDisplay = document.querySelector('.timer');
-		timeDisplay.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
+		const TIME_DISPLAY = document.querySelector('.timer');
+		TIME_DISPLAY.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
 		
 		//display star rating
-		const starDisplay = document.querySelector('.rating');
-		stars.forEach(function(el) {
-			starDisplay.appendChild(el);
+		const STAR_DISPLAY = document.querySelector('.rating');
+		STARS.forEach(function(el) {
+			STAR_DISPLAY.appendChild(el);
 		})
 		
 	}, 1000)
 	
-	const modalClose = document.getElementById('modalClose');
-	modalClose.addEventListener('click', function() {
-		modal.style.display = "none";
-		modalOverlay.style.display = "none";
+	const MODAL_CLOSE = document.getElementById('modalClose');
+	MODAL_CLOSE.addEventListener('click', function() {
+		MODAL.style.display = "none";
+		MODAL_OVERLAY.style.display = "none";
 	});
 }
 
 //shuffle pack when page loads
 window.addEventListener('load', function() {
 	
-	const PACK = shuffle(cards);
+	const PACK = shuffle(CARDS);
 	
 	for (let i = 0; i < PACK.length; i++) {
 		[].forEach.call(PACK, function(item) {
-			board.appendChild(item);
+			BOARD.appendChild(item);
 		});
 	}
 	
-	counter.innerHTML = 'Moves: 0';
+	COUNTER.innerHTML = 'Moves: 0';
 	
 	//get reset button and attach window reload when clicked
 	reset = document.querySelector('.reset');
