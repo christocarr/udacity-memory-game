@@ -69,7 +69,7 @@ function pairMatch() {
 	flippedCards = [];
 	cardSymbols =[];
 	flippedCardCount = flippedCardCount + 2;
-	if (flippedCardCount === 2) {
+	if (flippedCardCount === 16) {
 		congratulationsModal();
 		endTime = new Date();
 		totalTime = endTime - startTime;
@@ -96,9 +96,10 @@ function moveCounter() {
 	counter.innerHTML = 'Moves: ' + moves;
 	
 	if (moves > 10 && moves <= 16) {
-		stars.pop();
+		stars[2].style.visibility = "collapse";
 	} else if (moves > 16) {
-		
+		stars[1].style.visibility = "collapse";
+		console.log(stars);
 	}
 
 }
@@ -131,11 +132,12 @@ function congratulationsModal() {
 		modal.style.display = "block";
 		modalOverlay.style.background = "black";
 		modalOverlay.style.display = "block";
+		
 		//display time taken to finish a game
 		const timeDisplay = document.querySelector('.timer');
 		timeDisplay.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
 		
-		//display the star rating
+		//display star rating
 		const starDisplay = document.querySelector('.rating');
 		stars.forEach(function(el) {
 			starDisplay.appendChild(el);

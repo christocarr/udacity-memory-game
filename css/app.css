@@ -29,7 +29,7 @@ h1 {
 }
 
 .star {
-	width: 7%;
+	width: 14%;
 }
 
 .counter {
@@ -148,15 +148,19 @@ h1 {
 
 .modal-heading {
 	text-align: center;
-	font-size: 2em;
+	font-size: 1.5em;
 	margin: 2em 0 0 0;
 }
 
 .timer,
 .rating {
 	text-align: center;
-	font-size: 0.6em;
+	font-size: 0.7em;
 	margin: 2em 0 0 0;
+}
+
+.modal .star {
+	width: 6%;
 }
 
 /******************************************
@@ -199,7 +203,9 @@ h1 {
 		margin: 2em 0 0 0;
 	}
 
-	
+	.modal .star {
+		width: 4%;
+	}
 }
 
 @media screen and (min-width: 1023px) {
