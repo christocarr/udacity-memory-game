@@ -11,15 +11,16 @@ body {
 
 h1 {
 	text-align: center;
-	width: 40%;
+	width: 70vw;
 	margin: 1em auto 1em auto;
-	font-size: 2.3em;
+	font-size: 1.7em;
 } 
 
 .stat-container {
+	font-size: 0.8em;
 	display: flex;
 	align-items: center;
-	width: 45%;
+	width: 90vw;
 	margin: 0 auto 1em auto;
 }
 
@@ -29,6 +30,7 @@ h1 {
 
 .counter {
 	width: 40%;
+	margin: 0 0 0 1em;
 }
 
 .reset {
@@ -46,8 +48,8 @@ h1 {
 }
 
 .board {
-	width: 430px;
-	height: 490px;
+	width: 90vw;
+	height: 55vh;
 	background: whitesmoke;
 	display: flex;
 	flex-wrap: wrap;
@@ -114,7 +116,7 @@ h1 {
 	border: 1px solid silver;
 	border-radius: 0.5em;
 	height: 50vh;
-	width:  60vw;
+	width:  90vw;
 	z-index: 1001;
 }
 
@@ -140,8 +142,76 @@ h1 {
 	cursor: pointer;
 }
 
-.modal-heading, 
-.modal p {
+.modal-heading {
 	text-align: center;
 	margin: 2em;
+}
+
+.timer, 
+.rating {
+	font-size: 1em;
+	text-align: center;
+	margin: 2em;
+}
+
+/******************************************
+								media queries
+*******************************************/
+@media screen and (min-width:768px) {
+
+	.board {
+		width: 62vw;
+		height: 55vh;
+		
+	}
+	
+	h1 {
+		font-size: 2.4em;
+	} 
+	
+	.stat-container {
+		width: 58vw;
+		font-size: 1em;
+	}
+	
+}
+
+@media screen and (min-width: 1023px) {
+	
+	.board {
+		width: 57vw;
+		height: 50vh;
+	}
+	
+	h1 {
+		font-size: 2.8em;
+	} 
+	
+	.stat-container {
+		width: 54vw;
+		font-size: 1.2em;
+	}
+	
+}
+
+@media screen and (min-width: 1440px) {
+	
+	.board {
+		width: 42vw;
+		height: 72vh;
+	}
+	
+	h1 {
+		font-size: 3em;
+	} 
+	
+	.stat-container {
+		width: 41vw;
+		font-size: 1.6em;
+	}
+	
+	.reset {
+		width: 100%;
+	}
+	
 }
