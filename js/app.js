@@ -145,7 +145,14 @@ function congratulationsModal() {
 		const STAR_DISPLAY = document.querySelector('.rating');
 		STARS.forEach(function(el) {
 			STAR_DISPLAY.appendChild(el);
+		
 		})
+		
+		//display 'play again' button
+		const PLAY_AGAIN = document.getElementById('playAgain');
+			PLAY_AGAIN.addEventListener('click', function() {
+				window.location.reload(true);
+			})
 		
 	}, 1000)
 	

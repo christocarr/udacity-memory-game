@@ -153,19 +153,32 @@ h1 {
 .modal-heading {
 	text-align: center;
 	font-size: 1.5em;
-	margin: 2em 0 0 0;
+	margin: 1em 0 0 0;
 }
 
 .timer,
 .rating,
-.play-again {
+.play-again,
+.moves {
 	text-align: center;
 	font-size: 0.7em;
-	margin: 2em 0 0 0;
+	margin: 1.6em 0 0 0;
 }
 
 .modal .star {
 	width: 6%;
+}
+
+.button-container {
+	margin: auto;
+	width: 8em;
+}
+
+.play-again {
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	margin: 1em auto;
+	font-size: 0.8em;
+	border-radius: 0.3em;
 }
 
 /******************************************
@@ -207,12 +220,13 @@ h1 {
 	.moves {
 		text-align: center;
 		font-size: 1em;
-		margin: 1.1em 0 0 0;
+		margin: 1.5em 0 0 0;
 	}
 
 	.modal .star {
 		width: 4%;
 	}
+	
 }
 
 @media screen and (min-width: 1023px) {
