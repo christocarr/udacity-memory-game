@@ -34,7 +34,6 @@ let cardClick = function(e){
 	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
 	
 	this.classList.toggle('flipped');
-	this.classList.toggle('disabled');
 	
 	cardSymbols.push(symbol);
 
@@ -51,6 +50,11 @@ let cardClick = function(e){
 function compareCards() {
 
 	if (flippedCards.length === 2) {
+		
+		//disable all other cards when only two are flipped
+		CARDS.forEach(function(card) {
+			card.classList.add('disabled');
+		})
 		moveCounter()
 		
 		if (cardSymbols[0] === cardSymbols[1]) {
@@ -64,11 +68,19 @@ function compareCards() {
 
 	
 function pairMatch() {
-	flippedCards[0].classList.toggle('disabled');
-	flippedCards[1].classList.toggle('disabled');
+	//if cards match give them the matched card class
+	//which disables the pointer
+	flippedCards[0].classList.add('matched-card');
+	flippedCards[1].classList.add('matched-card');
+	//and remove the disabled class
+	CARDS.forEach(function(card) {
+		card.classList.remove('disabled');
+	})
+	
 	flippedCards = [];
 	cardSymbols =[];
 	flippedCardCount = flippedCardCount + 2;
+	
 	if (flippedCardCount === 16) {
 		congratulationsModal();
 		endTime = new Date();
@@ -82,10 +94,13 @@ function pairMismatch() {
 	setTimeout(function() {
 		flippedCards[0].classList.toggle('flipped');
 		flippedCards[1].classList.toggle('flipped');
-		flippedCards[0].classList.toggle('disabled');
-		flippedCards[1].classList.toggle('disabled');
 		flippedCards = [];
 		cardSymbols =[];
+		//when two compared cards don't match then re-enable all cards but leaves matched cards disabled
+		CARDS.forEach(function(card) {
+			card.classList.toggle('disabled');
+		})
+		
 	}, 900);
 	
 }
@@ -95,9 +110,9 @@ function moveCounter() {
 	moves++;
 	COUNTER.innerHTML = 'Moves: ' + moves;
 	
-	if (moves > 10 && moves <= 16) {
+	if (moves > 12 && moves <= 17) {
 		STARS[2].style.visibility = "collapse";
-	} else if (moves > 16) {
+	} else if (moves > 17) {
 		STARS[1].style.visibility = "collapse";
 	}
 
