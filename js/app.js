@@ -137,6 +137,10 @@ function congratulationsModal() {
 		const TIME_DISPLAY = document.querySelector('.timer');
 		TIME_DISPLAY.innerHTML = `You completed the game in a time of ${totalTime} seconds.`
 		
+		//display the amount of moves it took to complete the game
+		const MOVES_DISPLAY = document.querySelector('.moves');
+		MOVES_DISPLAY.innerHTML = `It took you ${moves} moves to comlete a round of Memory.`
+		
 		//display star rating
 		const STAR_DISPLAY = document.querySelector('.rating');
 		STARS.forEach(function(el) {
