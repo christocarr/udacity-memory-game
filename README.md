@@ -8,7 +8,7 @@ Clone or download to your local machine then double click the index.html file to
 
 ### Issues
 
-No issues found.
+Issue with running the game in Safari. Not all cards flip over. 
 
 ### Dependencies
 
