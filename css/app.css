@@ -184,6 +184,33 @@ h1 {
 /******************************************
 								media queries
 *******************************************/
+@media screen and (min-height:360px) {
+	body {
+		height: 75vh;
+	}
+
+	h1 {
+		font-size: 1.2em;
+		margin: 0.5em auto 0.5em auto;
+	}
+
+	.stat-container {
+		margin: 0 auto 0.5em auto;
+	}
+
+	.star {
+		width: 8%;
+	}
+
+	.reset {
+		width: 2.3em;
+	}
+
+	.board {
+		height: 95%;
+	}
+}
+
 @media screen and (min-width:768px) {
 	.star {
 		width: 9%;
