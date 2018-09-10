@@ -8,7 +8,7 @@ Clone or download to your local machine then double click the index.html file to
 
 ### Issues
 
-No issues found.
+Currently there are issues with iOS. Cards do not flip over.
 
 ### Dependencies
 
