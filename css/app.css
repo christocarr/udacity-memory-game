@@ -69,7 +69,9 @@ h1 {
 	height: 21%;
 	position: relative;
 	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
 	transition: transform 0.9s;
+	-webkit-transition: transform 0.9s;
 	margin: 0.3em
 }
 
@@ -97,6 +99,7 @@ h1 {
 	justify-content: center;
 	background: dodgerblue;
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 }
 
 
@@ -104,6 +107,7 @@ h1 {
 
 .flipped {
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 }
 
 .disabled {
@@ -120,6 +124,7 @@ h1 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
 	background: whitesmoke;
 	border: 1px solid silver;
 	border-radius: 0.5em;
