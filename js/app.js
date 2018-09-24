@@ -29,7 +29,9 @@ const MODAL_OVERLAY = document.getElementById('modalOverlay');
 let startTime, endTime, totalTime;
 
 
-let cardClick = function(e){
+let cardClick = function(e) {
+
+	console.log(e.target);
 	
 	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
 	
