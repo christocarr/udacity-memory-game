@@ -1,3 +1,26 @@
+//nextElementSibling polyfill
+(function (arr) {
+	arr.forEach(function (item) {
+	  if (item.hasOwnProperty('nextElementSibling')) {
+		return;
+	  }
+	  Object.defineProperty(item, 'nextElementSibling', {
+		configurable: true,
+		enumerable: true,
+		get: function () {
+		  var el = this;
+		  while (el = el.nextSibling) {
+			if (el.nodeType === 1) {
+				return el;
+			}
+		  }
+		  return null;
+		},
+		set: undefined
+	  });
+	});
+  })([Element.prototype, CharacterData.prototype]);
+
 
 //get cards with class name card and make array called cards
 const ALL_CARDS = document.getElementsByClassName('card');
