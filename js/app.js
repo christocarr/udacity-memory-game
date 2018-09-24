@@ -80,7 +80,7 @@ function compareCards() {
 		CARDS.forEach(function(card) {
 			card.classList.add('disabled');
 		})
-		moveCounter()
+		moveCounter() //increase move counter by one
 		
 		if (cardSymbols[0] === cardSymbols[1]) {
 			pairMatch();
@@ -145,11 +145,17 @@ function moveCounter() {
 
 //add event listener for each card in cards array
 CARDS.forEach(function(card, index) {
-	
-//	card.setAttribute('id', index);
+
 	card.addEventListener('click', cardClick)
 	
 });
+
+//if Safari on iOS then use touch
+window.onload = function() {
+  if(/iP(hone|ad)/.test(window.navigator.userAgent)) {
+    document.body.addEventListener('touchstart', cardClick, false);
+  }
+};
 
 //function to shuffle cards at on load and reset
 function shuffle(arr) {

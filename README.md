@@ -8,7 +8,7 @@ Clone or download to your local machine then double click the index.html file to
 
 ### Issues
 
-Issue with running the game in Safari. Not all cards flip over. 
+Currently there are issues with iOS. Cards do not flip over.
 
 ### Dependencies
 
