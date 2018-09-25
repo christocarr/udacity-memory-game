@@ -30,7 +30,9 @@ let startTime, endTime, totalTime;
 
 
 let cardClick = function(e){
-	
+	console.log(e.bubbles);
+	e.stopPropagation();
+	e.preventDefault();
 	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
 	
 	this.classList.toggle('flipped');
