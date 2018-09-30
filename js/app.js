@@ -30,12 +30,14 @@ let startTime, endTime, totalTime;
 
 
 let cardClick = function(e){
-	console.log(e.bubbles);
 	e.stopPropagation();
-	e.preventDefault();
+	console.log(e.bubbles);
+	console.log(e);
+	console.log(e.target.nextElementSibling.firstChild.className);
 	let symbol = e.target.nextElementSibling.firstChild.className; //get symbols of clicked card
 	
 	this.classList.toggle('flipped');
+	console.log(this);
 	
 	cardSymbols.push(symbol);
 
@@ -123,21 +125,21 @@ function moveCounter() {
 //add event listener for each card in cards array
 CARDS.forEach(function(card, index) {
 
-	card.addEventListener('click', cardClick)
+	card.addEventListener('click', cardClick, false);
 	
 });
 
 //if Safari on iOS then use touch
-window.onload = function() {
-  if(/iP(hone|ad)/.test(window.navigator.userAgent)) {
-    document.body.addEventListener('touchstart', cardClick, false);
-  }
-};
+// window.onload = function() {
+//   if(/iP(hone|ad)/.test(window.navigator.userAgent)) {
+//     document.body.addEventListener('touchstart', cardClick, false);
+//   }
+// };
 
 //function to shuffle cards at on load and reset
 function shuffle(arr) {
 	let randomCard;
-	let tempCard; //for swopping
+	let tempCard; //for swapping
 	for (let i = arr.length-1; i >= 0; i--) {
 		
 		randomCard = Math.floor(Math.random() * i); //gets random card in array
@@ -162,7 +164,7 @@ function congratulationsModal() {
 		
 		//display the amount of moves it took to complete the game
 		const MOVES_DISPLAY = document.querySelector('.moves');
-		MOVES_DISPLAY.innerHTML = `It took you ${moves} moves to comlete a round of Memory.`
+		MOVES_DISPLAY.innerHTML = `It took you ${moves} moves to complete a round of Memory.`
 		
 		//display star rating
 		const STAR_DISPLAY = document.querySelector('.rating');
